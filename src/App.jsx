@@ -10,7 +10,7 @@ function App() {
       <header className="App-header">
         Recommender System for Self Actualization
       </header>
-      <Router basepath="/">
+      <Router basepath="/rssa-study">
         <Suspense fallback={<h1>Loading</h1>}>
           <Routes>
             <Route path="/" element={<RssaMain />} />
