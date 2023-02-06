@@ -39,6 +39,8 @@
 }
 
 .sidePanel {
+  overflow-y: scroll;
+  overflow-x: scroll;
   padding: 0.75em 0.25em;
   margin: 0.75em 0.25em;
   /* height: 748px; */
@@ -77,11 +79,14 @@
   border: 1px solid #c8bcb4;
   background-color: #d8ccc4;
   border-radius: 0.5em;
+  overflow-y: scroll;
+  overflow-x: scroll;
 }
 
 .gallery {
   width: fit-content;
   -moz-fit-content: fit-content;
+  max-width: 585px;
   margin: 0 auto;
 }
 
@@ -342,68 +347,68 @@
 }
 
 .loader h1 span:nth-child(2) {
-  animation-delay: 0.2s;
   -webkit-animation-delay: 0.2s;
+  animation-delay: 0.2s;
 }
 
 .loader h1 span:nth-child(3) {
-  animation-delay: 0.3s;
   -webkit-animation-delay: 0.3s;
+  animation-delay: 0.3s;
 }
 
 .loader h1 span:nth-child(4) {
-  animation-delay: 0.4s;
   -webkit-animation-delay: 0.4s;
+  animation-delay: 0.4s;
 }
 
 .loader h1 span:nth-child(5) {
-  animation-delay: 0.5s;
   -webkit-animation-delay: 0.5s;
+  animation-delay: 0.5s;
 }
 
 .loader h1 span:nth-child(6) {
-  animation-delay: 0.6s;
   -webkit-animation-delay: 0.6s;
+  animation-delay: 0.6s;
 }
 
 .loader h1 span:nth-child(7) {
-  animation-delay: 0.7s;
   -webkit-animation-delay: 0.7s;
+  animation-delay: 0.7s;
 }
 
 .loader h1 span:nth-child(8) {
-  animation-delay: 0.3s;
   -webkit-animation-delay: 0.3s;
+  animation-delay: 0.3s;
 }
 
 .loader h1 span:nth-child(9) {
-  animation-delay: 0.4s;
   -webkit-animation-delay: 0.4s;
+  animation-delay: 0.4s;
 }
 
 .loader h1 span:nth-child(10) {
-  animation-delay: 0.5s;
   -webkit-animation-delay: 0.5s;
+  animation-delay: 0.5s;
 }
 
 .loader h1 span:nth-child(11) {
-  animation-delay: 0.6s;
   -webkit-animation-delay: 0.6s;
+  animation-delay: 0.6s;
 }
 
 .loader h1 span:nth-child(12) {
-  animation-delay: 0.7s;
   -webkit-animation-delay: 0.7s;
+  animation-delay: 0.7s;
 }
 
 .loader h1 span:nth-child(13) {
-  animation-delay: 0.8s;
   -webkit-animation-delay: 0.8s;
+  animation-delay: 0.8s;
 }
 
 .loader h1 span:nth-child(14) {
-  animation-delay: 0.9s;
   -webkit-animation-delay: 0.9s;
+  animation-delay: 0.9s;
 }
 
 @keyframes bouncingAnim {

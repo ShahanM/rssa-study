@@ -40,7 +40,7 @@ export default function MovieGrid(props) {
 									handleRating={props.ratingCallback} />
 							))}
 						</div>
-						: <div style={{ minWidth: "918px", minHeight: "656px" }}>
+						: <div style={{ minWidth: "585px", minHeight: "656px" }}>
 							<Spinner animation="border" role="status" style={{ margin: "18% 50%", width: "54px", height: "54px" }} />
 						</div>
 					}
