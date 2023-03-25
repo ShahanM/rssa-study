@@ -1,14 +1,26 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import StarRatings from 'react-star-ratings';
+import { imgurl } from '../middleware/utils';
 
 
 export default function MovieGridItem(props) {
+
+	const [movieItem, setMovieItem] = useState(props.movieItem);
+	useEffect(() => { setMovieItem(props.movieItem) }, [props.movieItem]);
+
+	const poster_identifier = movieItem.poster_identifier;
+
+	// console.log(poster_identifier);
+
+	const rated = movieItem.rating !== undefined;
+
 	return (
-		<div id={"TN_" + props.movieItem.movie_id}
+		<div id={"TN_" + movieItem.movie_id}
 			className={"grid-item"} style={{
-				backgroundImage: "url(" + props.movieItem.poster + "), url('" + 'defaultMovieIco' + "')",
+				backgroundImage: "url(" + imgurl(poster_identifier) + "), url(" + imgurl(null) + ")",
+				backgroundColor: "rgb(249, 176, 92, 0.6)"
 			}}>
-			<div className="overlay">
+			<div className={rated ? "rated overlay" : "overlay"}>
 				<div className={props.movieItem.rating > 0 ? 'star-div-rated' : 'star-div'}>
 					<StarRatings
 						rating={props.movieItem.rating}
@@ -18,7 +30,7 @@ export default function MovieGridItem(props) {
 						starSpacing="1px"
 						changeRating={props.handleRating}
 						numberOfStars={5}
-						name={props.movieItem.movie_id} />
+						name={props.movieItem.movie_id.toString()} />
 				</div>
 			</div>
 			<div className="grid-item-label" style={{ position: "absolute" }}>

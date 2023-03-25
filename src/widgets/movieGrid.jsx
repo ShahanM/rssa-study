@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
@@ -9,11 +9,13 @@ import MovieGridItem from './movieGridItem';
 
 export default function MovieGrid(props) {
 	const [currentPage, setCurrentPage] = useState(1);
+	const [movies, setMovies] = useState(props.movies);
+	useEffect(() => { setMovies(props.movies) }, [props.movies]);
 
 	const renderPrev = () => {
 		if (currentPage > 1) {
-			if(props.pagingCallback){
-				props.pagingCallback(currentPage-1);
+			if (props.pagingCallback) {
+				props.pagingCallback(currentPage - 1);
 			}
 			setCurrentPage(currentPage - 1);
 		}
@@ -23,7 +25,7 @@ export default function MovieGrid(props) {
 		if (currentPage % 2 === 0) {
 			props.dataCallback();
 		}
-		if(props.pagingCallback){
+		if (props.pagingCallback) {
 			props.pagingCallback(currentPage + 1);
 		}
 		setCurrentPage(currentPage + 1);
@@ -33,12 +35,13 @@ export default function MovieGrid(props) {
 		<Container className="gallery">
 			<Row>
 				<Col md={12}>
-					{(currentPage * props.itemsPerPage <= props.movies.length) ?
+					{(currentPage * props.itemsPerPage <= movies.length) ?
 						<div className="grid-container">
-							{props.movies.slice((currentPage - 1) * props.itemsPerPage, currentPage * props.itemsPerPage).map(currentMovie => (
-								<MovieGridItem key={"TN_" + currentMovie.id} movieItem={currentMovie}
-									handleRating={props.ratingCallback} />
-							))}
+							{movies.slice((currentPage - 1) * props.itemsPerPage,
+								currentPage * props.itemsPerPage).map(currentMovie => (
+									<MovieGridItem key={"TN_" + currentMovie.id} movieItem={currentMovie}
+										handleRating={props.ratingCallback} />
+								))}
 						</div>
 						: <div style={{ minWidth: "585px", minHeight: "656px" }}>
 							<Spinner animation="border" role="status" style={{ margin: "18% 50%", width: "54px", height: "54px" }} />
