@@ -1,0 +1,5 @@
+const DemographyPage = (props) => {
+	return (
+		<></>
+	)
+}
