@@ -3,13 +3,24 @@ import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
-import { get, post } from '../middleware/requests';
-import MovieGrid from '../widgets/movieGrid';
-import MovieRibbonItem from '../widgets/movieRibbonItem';
-import { BouncingLoader } from '../widgets/recLoader';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { cancellablePost, get } from '../api/middleware/requests';
+import { getFirstStepPage, getNextStudyStep } from '../api/studyapi';
+import MovieGrid from '../widgets/collections/movieGrid';
+import { MovieRibbon } from '../widgets/collections/movieRibbon';
+import HeaderJumbotron from '../widgets/headerJumbotron';
+import NextButton from '../widgets/nextButton';
 
 export default function RssaMain() {
-	const userid = 1;
+	// const userid = 1;
+
+
+	const userdata = useLocation().state.user;
+	const stepid = useLocation().state.studyStep;
+	const navigate = useNavigate();
+
+	const [studyStep, setStudyStep] = useState({});
+	const [pageData, setPageData] = useState({});
 
 	const [ratedMoviesData, setRatedMoviesData] = useState([]);
 	const [ratedMovies, setRatedMovies] = useState([]);
@@ -43,6 +54,7 @@ export default function RssaMain() {
 		updatedmovie.rating = newRating;
 		if (isNew) {
 			let updatevisited = [...ratedMoviesData, { item_id: movieid, rating: newRating }];
+			// console.log(updatevisited);
 			let updaterated = [...ratedMovies, updatedmovie];
 			setRatedMovies(updaterated);
 			setRatedMoviesData(updatevisited);
@@ -70,22 +82,31 @@ export default function RssaMain() {
 	}
 
 	useEffect(() => {
+		getNextStudyStep(userdata.study_id, stepid)
+			.then((step: studyStep) => { setStudyStep(step) })
 		fetchMovies();
 	}, []);
 
 	useEffect(() => {
+		if (Object.keys(studyStep).length > 0) {
+			getFirstStepPage(studyStep)
+				.then((page: studyPage) => { setPageData(page) })
+		}
+	}, [studyStep]);
 
+
+	useEffect(() => {
 		const getRecommendations = async (recType, signal) => {
 			recType === 0 ? setRecLoading(true) : setConLoading(true);
 			setLoading(true);
 			if (ratedMoviesData.length > 0) {
-				return post('recommendation/', signal, {
+				return cancellablePost('recommendation/', signal, {
 					ratings: ratedMoviesData,
-					user_id: userid,
+					user_id: userdata.id,
 					user_condition: recType,
 					rec_type: recType,
 					num_rec: 10
-				})
+				}, userdata)
 			}
 		}
 
@@ -127,7 +148,7 @@ export default function RssaMain() {
 			if (abortRecNRef.current) { abortRecNRef.current.abort(); }
 			if (abortCondRef.current) { abortCondRef.current.abort(); }
 		}
-	}, [ratedMoviesData, rssaCondition]);
+	}, [ratedMoviesData, rssaCondition, userdata]);
 
 	const removeMovieHandler = (movieId) => {
 		const newratedmovies = ratedMovies.filter(movie => movie.movie_id !== movieId);
@@ -151,76 +172,64 @@ export default function RssaMain() {
 	return (
 		<Container>
 			<Row>
-				<Col md={5} className="viewport">
-					<MovieGrid ratingCallback={rateMoviesHandler} userid={userid} movies={movies}
-						pagingCallback={updateCurrentPage} itemsPerPage={itemsPerPage} dataCallback={fetchMovies} />
+				<HeaderJumbotron title={pageData.page_name} content={pageData.page_instruction} />
+			</Row >
+			<Row>
+				<Col className="viewport">
+					<MovieGrid ratingCallback={rateMoviesHandler}
+						userid={userdata.id} movies={movies}
+						pagingCallback={updateCurrentPage}
+						itemsPerPage={itemsPerPage}
+						dataCallback={fetchMovies} />
 				</Col>
-				<Col md={7}>
+				<Col>
 					<div className="sidePanel">
 						<h5>Movies You Rated</h5>
-						<div className="movieRibbon">
-							{ratedMovies.length > 0 && ratedMovies.map((movie) =>
-								<MovieRibbonItem key={'"rated_' + movie.movie_id + '"'}
-									isLoading={false}
-									movieItem={movie} showStarRating={false} allowRemove={true}
-									removeItemCallback={removeMovieHandler} />)}
-						</div>
+						<MovieRibbon customKey="rating_history"
+							ratingCallback={rateMoviesHandler}
+							movies={ratedMovies}
+							loading={false}
+							showStarRating={true}
+							allowRemove={true}
+							autoScroll={'right'}
+							removeItemCallback={removeMovieHandler} />
 					</div>
 					<div className="sidePanel">
-						<Row>
-							<Col>
-								<h5>Movies you think we will like</h5>
-							</Col>
-						</Row>
-						<Row>
-							<div className="movieRibbon recRibbon">
-								{
-									loading && recommendedMovies === 0 && <BouncingLoader key={"topNrecommendationLoader"} text="Loading..." />
-								}
-								{recommendedMovies.length > 0 ? recommendedMovies.map((movie) =>
-									<MovieRibbonItem key={'"rec_' + movie.movie_id + '"'}
-										isLoading={recLoading} ratingCallback={rateMoviesHandler}
-										movieItem={movie} showStarRating={false} containerClass="recItem" />)
-									:
-									<div className="ribbonButtonDiv">
-										<p>
-											Please rate movies on the left to get recommendations.
-										</p>
-									</div>
-								}
-							</div>
-						</Row>
-						<Row>
-							<Col>
-								<h5>These are movies that </h5>
-							</Col>
-						</Row>
-						<Row>
-							<Form.Group>
-								<Form.Select className="panelOption" variant="outline-secondary"
-									title="Dropdown" id="input-group-dropdown" disabled={loading || ratedMovies.length === 0}
-									onChange={(evt) => setRssaCondition(evt.target.value)} value={rssaCondition}>
-									<option value="-1">Please choose an option</option>
-									<option value="1">we think are controversial.</option>
-									<option value="2">we think you will hate.</option>
-									<option value="3">we think you will be the first to try.</option>
-									<option value="4">we have no idea about.</option>
-								</Form.Select>
-							</Form.Group>
-							<div className="movieRibbon recRibbon">
-								{
-									conLoading &&
-									conditionRecommendations.length === 0 &&
-									<BouncingLoader key={"conditionRecLoader"} text="Loading..." />
-								}
-								{conditionRecommendations.length > 0 && conditionRecommendations.map((movie) =>
-									<MovieRibbonItem key={'"recex_' + movie.movie_id + '"'}
-										isLoading={conLoading} ratingCallback={rateMoviesHandler}
-										movieItem={movie} showStarRating={false} containerClass="recItem" />)}
-							</div>
-						</Row>
+						<h5>Movies you think we will like</h5>
+						<MovieRibbon customKey="topN_recommendations"
+							ratingCallback={rateMoviesHandler}
+							movies={recommendedMovies}
+							loading={recLoading}
+							autoScroll={'left'}
+							infoButton={true} />
+					</div>
+					<div className="sidePanel">
+						<h5>These are movies that </h5>
+						<Form.Group>
+							<Form.Select className="panelOption" variant="outline-secondary"
+								title="Dropdown" id="input-group-dropdown" disabled={loading || ratedMovies.length === 0}
+								onChange={(evt) => setRssaCondition(evt.target.value)} value={rssaCondition}>
+								<option value="-1">Please choose an option</option>
+								<option value="1">we think are controversial.</option>
+								<option value="2">we think you will hate.</option>
+								<option value="3">we think you will be the first to try.</option>
+								<option value="4">we have no idea about.</option>
+							</Form.Select>
+						</Form.Group>
+						<MovieRibbon customKey="condition_recommendations"
+							ratingCallback={rateMoviesHandler}
+							movies={conditionRecommendations}
+							loading={conLoading}
+							infoButton={true} />
 					</div>
 				</Col>
+			</Row>
+			<Row>
+				<div className="jumbotron jumbotron-footer" style={{ display: "flex" }}>
+					{/* <RankHolder count={ratedMovieCount} /> */}
+					<NextButton disabled={buttonDisabled && !loading}
+						loading={loading} onClick={() => { }} />
+				</div>
 			</Row>
 		</Container>
 	);

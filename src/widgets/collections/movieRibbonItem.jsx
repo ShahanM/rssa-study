@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import Button from 'react-bootstrap/Button';
 import StarRatings from 'react-star-ratings';
-import { imgurl } from '../middleware/utils';
-import { MovieDetailsCard } from './movieDetailsCard';
+import { imgurl } from '../../api/middleware/utils';
+import { MovieDetailsCard } from '../movieDetailsCard';
 
 export default function MovieRibbonItem(props) {
 
@@ -10,6 +10,7 @@ export default function MovieRibbonItem(props) {
 	const [movieItem, setMovieItem] = React.useState(props.movieItem);
 	useEffect(() => { setMovieItem(props.movieItem) }, [props.movieItem]);
 
+	const infoButton = props.infoButton || false;
 	const allowremove = props.allowRemove || false;
 	const allowrating = props.allowRating || false;
 	const containerClass = props.containerClass || "";
@@ -23,11 +24,17 @@ export default function MovieRibbonItem(props) {
 				backgroundImage: "url(" + imgurl(movieItem.poster_identifier) + "), url(" + imgurl(null) + ")",
 				backgroundColor: "rgb(249, 176, 92, 0.6)"
 			}}
-				onClick={() => setShowDetails(!showDetails)}
+			// onClick={() => setShowDetails(!showDetails)}
 			>
 				{allowremove &&
 					<div className="removeItem">
-						<Button onClick={() => props.removeItemCallback(props.movieItem.movie_id)}> x </Button>
+						<Button onClick={() => props.removeItemCallback(movieItem.movie_id)}> x </Button>
+					</div>
+				}
+				{
+					infoButton && !allowremove &&
+					<div className="infoButton">
+						<Button onClick={() => setShowDetails(!showDetails)}> i </Button>
 					</div>
 				}
 				<div className="movieRibbonItemLabel" style={{ position: "absolute" }}>
@@ -40,8 +47,8 @@ export default function MovieRibbonItem(props) {
 						rating={props.movieItem.rating}
 						starRatedColor="rgb(252,229,65)"
 						starHoverColor="rgb(252,229,65)"
-						starDimension="11px"
-						starSpacing="2px"
+						starDimension="18px"
+						starSpacing="1px"
 						changeRating={props.ratingCallback}
 						name={props.movieItem.movie_id.toString()}
 						numberOfStars={5} />

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import StarRatings from 'react-star-ratings';
-import { imgurl } from '../middleware/utils';
+import { imgurl } from '../../api/middleware/utils';
 
 
 export default function MovieGridItem(props) {

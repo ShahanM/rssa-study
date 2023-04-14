@@ -1,4 +1,4 @@
-const DemographyPage = (props) => {
+export const DemographyPage = (props) => {
 	return (
 		<></>
 	)

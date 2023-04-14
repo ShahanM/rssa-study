@@ -1,483 +1,544 @@
 .App {
-  text-align: center;
+	text-align: center;
 }
 
 .App-logo {
-  height: 40vmin;
-  pointer-events: none;
+	height: 40vmin;
+	pointer-events: none;
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+	.App-logo {
+		animation: App-logo-spin infinite 20s linear;
+	}
 }
 
 .App-header {
-  background-color: #282c34;
-  min-height: 9vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+	background-color: #282c34;
+	min-height: 9vh;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	font-size: calc(10px + 2vmin);
+	color: white;
 }
 
 .App-link {
-  color: #61dafb;
+	color: #61dafb;
 }
 
 @keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
+	from {
+		transform: rotate(0deg);
+	}
 
-  to {
-    transform: rotate(360deg);
-  }
+	to {
+		transform: rotate(360deg);
+	}
 }
 
 .sidePanel {
-  overflow-y: scroll;
-  overflow-x: scroll;
-  padding: 0.75em 0.25em;
-  margin: 0.75em 0.25em;
-  height: fit-content;
-  border: 1px solid #c8bcb4;
-  background-color: #d8ccc4;
-  border-radius: 0.5em;
+	overflow-y: scroll;
+	overflow-x: scroll;
+	padding: 0.5em 0.5em;
+	margin: 0.75em 0.25em;
+	height: fit-content;
+	border: 1px solid #c8bcb4;
+	background-color: #d8ccc4;
+	border-radius: 0.5em;
 }
 
 .movieDetailsModalHeader {
-  background-color: #e8dcc4;
+	background-color: #e8dcc4;
 }
 
 .movieDetailsModalBody {
-  background-color: #d8ccc4;
+	background-color: #d8ccc4;
 }
 
 .sidePanel h5 {
-  text-align: left;
-  margin: 0.25em;
+	text-align: left;
+	margin: 0;
 }
 
 .panelBtn {
-  width: 180px;
-  height: 50px;
-  margin: 3px;
+	width: 180px;
+	height: 50px;
+	margin: 3px;
 }
 
 .panelInput {
-  width: 45px;
+	width: 45px;
 }
 
 .panelOption {
-  width: 720px;
-  height: 45px;
-  margin: 0.75em auto;
+	width: 500px;
+	height: 45px;
+	margin: 0.75em 0;
 
 }
 
 .viewport {
-  margin: 0.75em 0;
-  padding: 0.75em 0.25em;
-  min-height: 600px;
-  border: 1px solid #c8bcb4;
-  background-color: #d8ccc4;
-  border-radius: 0.5em;
-  overflow-y: scroll;
-  overflow-x: scroll;
+	margin: 0.75em 0;
+	padding: 0.75em 0.25em;
+	min-height: 600px;
+	border: 1px solid #c8bcb4;
+	background-color: #d8ccc4;
+	border-radius: 0.5em;
+	overflow-y: scroll;
+	overflow-x: scroll;
 }
 
 .gallery {
-  width: fit-content;
-  -moz-fit-content: fit-content;
-  max-width: 585px;
-  margin: 0 auto;
+	width: -moz-fit-content;
+	width: fit-content;
+	max-width: 585px;
+	margin: 0 auto;
 }
 
 .gallery .btnDiv {
-  margin-top: 0.75em;
-  padding: 0;
+	margin-top: 0.75em;
+	padding: 0;
 }
 
 .gallery .btnDiv Button {
-  width: 230px;
-  height: 54px;
-  margin: 0;
+	width: 230px;
+	height: 54px;
+	margin: 0;
 }
 
 .grid-container {
-  display: grid;
-  grid-template-columns: auto auto auto auto;
-  grid-template-rows: auto auto auto auto;
-  justify-items: stretch;
-  overflow-x: hidden;
-  grid-column-gap: 0.25em;
-  grid-row-gap: 0.25em;
-  border-radius: 0.5em;
+	display: grid;
+	grid-template-columns: auto auto auto auto;
+	grid-template-rows: auto auto auto auto;
+	justify-items: stretch;
+	overflow-x: hidden;
+	grid-column-gap: 0.25em;
+	grid-row-gap: 0.25em;
+	border-radius: 0.5em;
 }
 
 .grid-item {
-  position: relative;
-  background-size: contain;
-  background-position-x: center;
-  background-position-y: top;
-  background-repeat: no-repeat;
-  background-color: rgba(0, 0, 0, 1.0);
-  width: 117px;
-  text-align: center;
-  height: 153px;
+	position: relative;
+	background-size: contain;
+	background-position-x: center;
+	background-position-y: top;
+	background-repeat: no-repeat;
+	background-color: rgba(0, 0, 0, 1.0);
+	width: 117px;
+	text-align: center;
+	height: 153px;
 }
 
 .grid-item-label {
-  background-color: black;
-  color: white;
-  opacity: 0.8;
-  font-size: 13px;
-  bottom: 0;
-  text-align: center;
-  vertical-align: middle;
-  width: 100%;
-  min-height: 50px;
-  display: flex;
-  z-index: 10;
-  justify-content: center;
-  align-content: center;
-  align-items: center;
+	background-color: black;
+	color: white;
+	opacity: 0.8;
+	font-size: 13px;
+	bottom: 0;
+	text-align: center;
+	vertical-align: middle;
+	width: 100%;
+	min-height: 50px;
+	display: flex;
+	z-index: 10;
+	justify-content: center;
+	align-content: center;
+	align-items: center;
 }
 
 .grid-item:hover .overlay {
-  width: 100%;
-  height: 100%;
-  background-color: black;
-  opacity: 0.8;
+	width: 100%;
+	height: 100%;
+	background-color: black;
+	opacity: 0.8;
 }
 
 .grid-item .rated.overlay {
-  width: 100%;
-  height: 100%;
-  background-color: black;
-  opacity: 0.8;
+	width: 100%;
+	height: 100%;
+	background-color: black;
+	opacity: 0.8;
 }
 
 .grid-item:hover .star-div {
-  z-index: 2;
-  display: flex;
+	z-index: 2;
+	display: flex;
 }
 
 .star-div {
-  height: 27px;
-  justify-content: center;
-  align-content: center;
-  margin: 0 auto;
-  padding-top: 50%;
-  display: none;
+	height: 27px;
+	justify-content: center;
+	align-content: center;
+	margin: 0 auto;
+	padding-top: 50%;
+	display: none;
 }
 
 .star-div-rated {
-  height: 27px;
-  justify-content: center;
-  align-content: center;
-  margin: 0 auto;
-  padding-top: 50%;
-  display: visible;
+	height: 27px;
+	justify-content: center;
+	align-content: center;
+	margin: 0 auto;
+	padding-top: 50%;
+	display: visible;
 }
 
 .movieRibbon {
-  position: relative;
-  width: 720px;
-  height: 163px;
-  border-bottom: #c8bcb4 2px solid;
-  background-color: #e8dcc4;
-  border-radius: 0.5em;
-  margin: 0.25em auto;
-  text-align: left;
-  overflow-x: scroll;
-  display: flex;
+	position: relative;
+	width: 640px;
+	height: 180px;
+	border-bottom: #c8bcb4 2px solid;
+	background-color: #e8dcc4;
+	/* border-radius: 0.5em; */
+	margin: 0.25em auto;
+	text-align: left;
+	overflow-x: scroll;
+	display: flex;
+	scroll-behavior: smooth;
 }
 
 .ribbonButtonDiv {
-  margin: auto;
+	margin: auto;
 }
 
 .movieRibbonItem {
-  position: relative;
-  background-size: contain;
-  background-position-x: center;
-  background-position-y: top;
-  background-repeat: no-repeat;
-  background-color: rgba(0, 0, 0, 1.0);
-  width: 108px;
-  text-align: center;
-  height: 144px;
-  margin: 0 1px;
+	position: relative;
+	background-size: contain;
+	background-position-x: center;
+	background-position-y: top;
+	background-repeat: no-repeat;
+	background-color: rgba(0, 0, 0, 1.0);
+	width: 117px;
+	text-align: center;
+	height: 153px;
+	margin: 0 1px;
 }
 
 .removeItem {
-  position: absolute;
-  top: 0;
-  right: 0;
-  color: #282c34;
-  font-size: 11px;
-  font-weight: bold;
-  text-align: center;
-  line-height: 13px;
-  cursor: pointer;
+	position: absolute;
+	top: 0;
+	right: 0;
+	color: #282c34;
+	font-size: 11px;
+	font-weight: bold;
+	text-align: center;
+	line-height: 13px;
+	cursor: pointer;
 }
 
 .removeItem Button {
-  color: white;
-  background-color: #0009;
-  border-radius: 1em;
+	color: white;
+	background-color: #0009;
+	border-radius: 1em;
+	z-index: 99;
+}
+
+.ribbonScrollButton {
+	width: 36px;
+	height: 180px;
+	margin-top: 4px;
+	border-bottom: #c8bcb4 solid 2px;
+	background-color: rgb(45, 45, 45, 0.9);
+	cursor: pointer;
+}
+
+.ribbonScrollButton p {
+	margin-top: 63px;
+	color: white;
+	font-weight: 800;
+}
+
+.ribbonScrollButton.leftArrow {
+	border-radius: 0.5em 0 0 0.5em;
+}
+
+.ribbonScrollButton.rightArrow {
+	border-radius: 0 0.5em 0.5em 0;
+}
+
+.ribbonScrollButton:hover {
+	background-color: rgb(0, 0, 0, 0.9);
+}
+
+.ribbonScrollButton.disabled {
+	background-color: rgb(45, 45, 45, 0.5);
+	cursor: inherit;
+}
+
+.ribbonScrollButton.disabled p {
+	margin-top: 63px;
+	color: rgb(255, 255, 255, 0.5);
+	font-weight: 800;
+}
+
+.infoButton {
+	position: absolute;
+	top: 0;
+	right: 0;
+	color: #282c34;
+	font-size: 11px;
+	font-weight: bold;
+	text-align: center;
+	line-height: 13px;
+	cursor: pointer;
+}
+
+.infoButton Button {
+	color: white;
+	background-color: #0009;
+	border-radius: 1em;
+	z-index: 99;
 }
 
 .movieRibbonItem.recItem {
-  width: 108px;
-  height: 144px;
+	width: 117px;
+	height: 153px;
 }
 
 .movieRibbon.recRibbon {
-  padding-left: 0;
-  padding-right: 0;
+	padding-left: 0;
+	padding-right: 0;
 }
 
 .movieRibbonItem:first-child {
-  margin-left: 0;
+	margin-left: 0;
 }
 
 .movieRibbonItemLabel {
-  background-color: black;
-  color: white;
-  opacity: 0.8;
-  font-size: 11px;
-  bottom: 0;
-  text-align: center;
-  vertical-align: middle;
-  width: 100%;
-  min-height: 27px;
-  display: flex;
-  z-index: 10;
-  justify-content: center;
-  align-content: center;
-  align-items: center;
+	background-color: black;
+	color: white;
+	opacity: 0.8;
+	font-size: 11px;
+	bottom: 0;
+	text-align: center;
+	vertical-align: middle;
+	width: 100%;
+	min-height: 27px;
+	display: flex;
+	z-index: 10;
+	justify-content: center;
+	align-content: center;
+	align-items: center;
 }
 
 .movieRibbonStars {
-  width: 108px;
-  background-color: #282c34;
-  justify-content: center;
-  align-content: center;
-  align-items: center;
-  padding-left: 18px;
-  margin-top: -8px;
+	width: 117px;
+	background-color: #282c34;
+	justify-content: center;
+	align-content: center;
+	align-items: center;
+	padding-left: 9px;
+	margin-top: 0px;
 }
 
-.movieRibbonStars:first-child {
-  border-bottom-left-radius: 0.5em;
-}
+/* .movieRibbonStars:first-child {
+	border-bottom-left-radius: 0.5em;
+} */
 
 .hideElement {
-  display: none;
+	display: none;
 }
 
 .loader {
-  position: absolute;
-  z-index: 13;
-  background-color: #282c3488;
-  width: 100%;
-  height: 146px;
-  padding: auto auto;
+	position: absolute;
+	z-index: 13;
+	background-color: #282c34ba;
+	width: 100%;
+	height: 180px;
+	border-radius: 0.5em;
+	padding: auto auto;
+	margin: 2px 0 0 0;
 }
 
 .spinner {
-  margin: auto;
+	margin: auto;
 }
 
 .loader p {
-  position: relative;
-  font-family: sans-serif;
-  text-transform: uppercase;
-  font-size: 2em;
-  letter-spacing: 4px;
-  overflow: hidden;
-  background: linear-gradient(90deg, #000, #fff, #000);
-  background-repeat: no-repeat;
-  background-size: 80%;
-  animation: shiningAnim 3s linear infinite;
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: rgba(255, 255, 255, 0);
+	position: relative;
+	font-family: sans-serif;
+	text-transform: uppercase;
+	font-size: 2em;
+	letter-spacing: 4px;
+	overflow: hidden;
+	background: linear-gradient(90deg, #000, #fff, #000);
+	background-repeat: no-repeat;
+	background-size: 80%;
+	animation: shiningAnim 3s linear infinite;
+	-webkit-background-clip: text;
+	background-clip: text;
+	-webkit-text-fill-color: rgba(255, 255, 255, 0);
 }
 
 @keyframes shiningAnim {
-  0% {
-    background-position: -500%;
-  }
+	0% {
+		background-position: -500%;
+	}
 
-  100% {
-    background-position: 500%;
-  }
+	100% {
+		background-position: 500%;
+	}
 }
 
 .loader h1 {
-  cursor: default;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  width: 100%;
-  height: 100px;
-  margin: auto;
-  display: block;
-  text-align: center;
+	cursor: default;
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	width: 100%;
+	height: 100px;
+	margin: auto;
+	display: block;
+	text-align: center;
 }
 
 .loader h1 span {
-  position: relative;
-  top: 20px;
-  display: inline-block;
-  animation: bouncingAnim 0.3s ease infinite alternate;
-  -webkit-animation: bouncingAnim 0.3s ease infinite alternate;
-  font-size: 54px;
-  color: #fff;
-  /* text-shadow: 0 1px 0 #ccc, 0 2px 0 #ccc, 0 3px 0 #ccc, 0 4px 0 #ccc,
+	position: relative;
+	top: 20px;
+	display: inline-block;
+	-webkit-animation: bouncingAnim 0.3s ease infinite alternate;
+	animation: bouncingAnim 0.3s ease infinite alternate;
+	font-size: 54px;
+	color: #fff;
+	/* text-shadow: 0 1px 0 #ccc, 0 2px 0 #ccc, 0 3px 0 #ccc, 0 4px 0 #ccc,
     0 5px 0 #ccc, 0 6px 0 transparent, 0 7px 0 transparent, 0 8px 0 transparent,
     0 9px 0 transparent, 0 10px 10px rgba(0, 0, 0, 0.4); */
 }
 
 .loader h1 span:nth-child(2) {
-  -webkit-animation-delay: 0.2s;
-  animation-delay: 0.2s;
+	-webkit-animation-delay: 0.2s;
+	animation-delay: 0.2s;
 }
 
 .loader h1 span:nth-child(3) {
-  -webkit-animation-delay: 0.3s;
-  animation-delay: 0.3s;
+	-webkit-animation-delay: 0.3s;
+	animation-delay: 0.3s;
 }
 
 .loader h1 span:nth-child(4) {
-  -webkit-animation-delay: 0.4s;
-  animation-delay: 0.4s;
+	-webkit-animation-delay: 0.4s;
+	animation-delay: 0.4s;
 }
 
 .loader h1 span:nth-child(5) {
-  -webkit-animation-delay: 0.5s;
-  animation-delay: 0.5s;
+	-webkit-animation-delay: 0.5s;
+	animation-delay: 0.5s;
 }
 
 .loader h1 span:nth-child(6) {
-  -webkit-animation-delay: 0.6s;
-  animation-delay: 0.6s;
+	-webkit-animation-delay: 0.6s;
+	animation-delay: 0.6s;
 }
 
 .loader h1 span:nth-child(7) {
-  -webkit-animation-delay: 0.7s;
-  animation-delay: 0.7s;
+	-webkit-animation-delay: 0.7s;
+	animation-delay: 0.7s;
 }
 
 .loader h1 span:nth-child(8) {
-  -webkit-animation-delay: 0.3s;
-  animation-delay: 0.3s;
+	-webkit-animation-delay: 0.3s;
+	animation-delay: 0.3s;
 }
 
 .loader h1 span:nth-child(9) {
-  -webkit-animation-delay: 0.4s;
-  animation-delay: 0.4s;
+	-webkit-animation-delay: 0.4s;
+	animation-delay: 0.4s;
 }
 
 .loader h1 span:nth-child(10) {
-  -webkit-animation-delay: 0.5s;
-  animation-delay: 0.5s;
+	-webkit-animation-delay: 0.5s;
+	animation-delay: 0.5s;
 }
 
 .loader h1 span:nth-child(11) {
-  -webkit-animation-delay: 0.6s;
-  animation-delay: 0.6s;
+	-webkit-animation-delay: 0.6s;
+	animation-delay: 0.6s;
 }
 
 .loader h1 span:nth-child(12) {
-  -webkit-animation-delay: 0.7s;
-  animation-delay: 0.7s;
+	-webkit-animation-delay: 0.7s;
+	animation-delay: 0.7s;
 }
 
 .loader h1 span:nth-child(13) {
-  -webkit-animation-delay: 0.8s;
-  animation-delay: 0.8s;
+	-webkit-animation-delay: 0.8s;
+	animation-delay: 0.8s;
 }
 
 .loader h1 span:nth-child(14) {
-  -webkit-animation-delay: 0.9s;
-  animation-delay: 0.9s;
+	-webkit-animation-delay: 0.9s;
+	animation-delay: 0.9s;
 }
 
 @keyframes bouncingAnim {
-  100% {
-    top: -13px;
-    /* text-shadow: 0 1px 0 #ccc, 0 2px 0 #ccc, 0 3px 0 #ccc, 0 4px 0 #ccc,
+	100% {
+		top: -13px;
+		/* text-shadow: 0 1px 0 #ccc, 0 2px 0 #ccc, 0 3px 0 #ccc, 0 4px 0 #ccc,
       0 5px 0 #ccc, 0 6px 0 #ccc, 0 7px 0 #ccc, 0 8px 0 #ccc, 0 9px 0 #ccc,
       0 25px 12px rgba(0, 0, 0, 0.1); */
-  }
+	}
 }
 
 p .inlineEmph {
-  display: inline;
-  margin: 0 0.2em;
-  font-weight: bold;
-  color: #000;
-  font-style: italic;
-  text-decoration: underline;
+	display: inline;
+	margin: 0 0.2em;
+	font-weight: bold;
+	color: #000;
+	font-style: italic;
+	text-decoration: underline;
 }
 
 
 .slideToggle {
-  margin: 9px 0;
-  overflow: hidden;
-  transition-property: height;
-  transition-duration: 0.5s;
-  transition-timing-function: linear;
-  /* transition: all 8s ease-in-out; */
-  height: 0;
+	margin: 9px 0;
+	overflow: hidden;
+	transition-property: height;
+	transition-duration: 0.5s;
+	transition-timing-function: linear;
+	/* transition: all 8s ease-in-out; */
+	height: 0;
 }
 
 .slideToggle.showfbdef {
-  height: 180px;
+	height: 180px;
 }
 
 .slideToggle.showfbhow {
-  height: 320px;
+	height: 320px;
 }
 
 .slideToggle.showfbbreak {
-  height: 280px;
+	height: 280px;
 }
 
 .wiggleItem {
-  animation: wiggle 0.3s linear infinite;
-  transform-origin: 50% 8em;
-  animation-delay: 0.3s
+	animation: wiggle 0.3s linear infinite;
+	transform-origin: 50% 8em;
+	animation-delay: 0.3s
 }
 
 @keyframes wiggle {
-  0% {
-    transform: rotate(0deg);
-  }
+	0% {
+		transform: rotate(0deg);
+	}
 
-  25% {
-    transform: rotate(2deg);
-  }
+	25% {
+		transform: rotate(2deg);
+	}
 
-  50% {
-    transform: rotate(0deg);
-  }
+	50% {
+		transform: rotate(0deg);
+	}
 
-  75% {
-    transform: rotate(-2deg);
-  }
+	75% {
+		transform: rotate(-2deg);
+	}
 
-  100% {
-    transform: rotate(0deg);
-  }
+	100% {
+		transform: rotate(0deg);
+	}
 }
