@@ -4,7 +4,7 @@ import { Navbar } from 'react-bootstrap';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './App.css';
 import { DemographyPage } from './pages/demographyPage';
-import RssaMain from './pages/recsystemPage';
+import RssaMain from './pages/recsystem/recsystemPage';
 import { StudyOverviewPage } from './pages/studyOverviewPage';
 import { Survey } from './pages/survey';
 import { WelcomePage } from './pages/welcomePage';
@@ -42,13 +42,6 @@ function App() {
 				/>
 			}
 			<Router basename='/rssa-study'>
-				{/* <header className="App-header">
-					<Navbar id="topnav" bg="light" style={{ width: "100%" }}>
-						<Navbar.Brand style={{ marginLeft: "1em", fontWeight: "450", textAlign: 'center', height: "1.5em" }}>
-							Movie Recommender Study
-							</Navbar>
-						</Navbar.Brand>
-				</header> */}
 				<Suspense fallback={<h1>Loading</h1>}>
 					<Routes>
 						<Route path="/" element={<WelcomePage next="/studyoverview" />} />

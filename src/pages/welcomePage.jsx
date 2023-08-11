@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { getFirstStudyStep, getStudy } from '../api/studyapi';
 import { createUser, sendLog } from '../api/userapi';
 import InformedConsentModal from '../widgets/dialogs/informedConsentModal';
+import HeaderJumbotron from '../widgets/headerJumbotron';
 
 export const WelcomePage = (props) => {
 
@@ -64,10 +65,8 @@ export const WelcomePage = (props) => {
 	return (
 		<Container>
 			<Row>
-				<div className="jumbotron">
-					<h1 className="header">Welcome</h1>
-					<p>Welcome to the study on movie recommendation.</p>
-				</div>
+				<HeaderJumbotron title="Welcome"
+					content="Welcome to the study on movie recommendation." />
 			</Row>
 
 			<Row>

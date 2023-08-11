@@ -1,8 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { BouncingLoader } from '../loaders/recLoader';
-import MovieRibbonItem from './movieRibbonItem';
+import { HorizontalMovieRibbonItem, VerticalMovieRibbonItem } from './movieRibbonItem';
 
-export const MovieRibbon = (props) => {
+export const HorizontalMovieRibbon = (props) => {
 
 	const allowRemove = props.allowRemove || false;
 	const removeItemCallback = allowRemove && props.removeItemCallback ? props.removeItemCallback : () => { };
@@ -70,11 +70,11 @@ export const MovieRibbon = (props) => {
 				<BouncingLoader key={props.customKey}
 					text="Loading..." />
 			}
-			<div style={{ display: "inline-flex" }}>
+			<div style={{ display: "inline-flex", width: "100%" }}>
 				<ScrollLeftButton onClick={() => scrollLeft()} disabled={!enableLeftScroll} />
-				<div className="movieRibbon recRibbon" ref={ribbonScroller}>
-					{movies.length > 0 && movies.map((movie) =>
-						<MovieRibbonItem key={'"rated_' + movie.movie_id + '"'}
+				<div className="movieRibbonH recRibbon" ref={ribbonScroller}>
+					{movies.length > 0 ? movies.map((movie) =>
+						<HorizontalMovieRibbonItem key={'"rated_' + movie.movie_id + '"'}
 							isLoading={loading}
 							movieItem={movie}
 							showStarRating={showStarRating}
@@ -83,7 +83,11 @@ export const MovieRibbon = (props) => {
 							allowRating={allowRating}
 							rateMovieCallback={rateMovieHandler}
 							removeItemCallback={removeItemCallback} />
-					)}
+					) : <>
+						<p style={{ margin: "auto" }}>
+							Movies you rate will appear here.
+						</p>
+					</>}
 				</div>
 				<ScrollRightButton onClick={scrollRight} disabled={!enableRightScroll} />
 			</div>
@@ -110,6 +114,56 @@ const ScrollRightButton = (props) => {
 			<p>
 				&gt;
 			</p>
+		</div>
+	)
+}
+
+export const VerticalMovieRibbon = (props) => {
+
+	const allowRemove = props.allowRemove || false;
+	const removeItemCallback = allowRemove && props.removeItemCallback ? props.removeItemCallback : () => { };
+
+	const showStarRating = props.showStarRating || false;
+	const infoButton = props.infoButton || false;
+
+	const allowRating = props.allowRating === undefined ? false : props.allowRating;
+	// const rateMovieHandler = allowRating && props.ratingCallback ? props.ratingCallback : () => { };
+
+	const rateMovieHandler = (movieId, rating) => {
+		console.log(movieId, rating);
+		props.ratingCallback(movieId, rating, true);
+	}
+
+	const [movies, setMovies] = useState([]);
+	useEffect(() => { setMovies(props.movies) }, [props.movies]);
+
+	const [loading, setLoading] = useState(props.loading);
+	useEffect(() => { setLoading(props.loading) }, [props.loading]);
+
+	return (
+		// <div style={{ position: "relative" }}>
+		<div>
+			{/* {
+				(loading) &&
+				<BouncingLoader key={props.customKey}
+					text="Loading..." />
+			} */}
+			{/* <div style={{ display: "inline-flex" }}> */}
+			<div>
+				<div className="movieRibbonV recRibbon">
+					{movies.length > 0 && movies.map((movie) =>
+						<VerticalMovieRibbonItem key={'"rated_' + movie.movie_id + '"'}
+							isLoading={loading}
+							movieItem={movie}
+							showStarRating={showStarRating}
+							infoButton={infoButton}
+							allowRemove={allowRemove}
+							allowRating={allowRating}
+							rateMovieCallback={rateMovieHandler}
+							removeItemCallback={removeItemCallback} />
+					)}
+				</div>
+			</div>
 		</div>
 	)
 }

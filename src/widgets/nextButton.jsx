@@ -27,7 +27,8 @@ export default function NextButton(props) {
 
 export const FooterButton = (props) => {
 	return (
-		<Button variant="ers" size="lg" className={props.className + " nextButton footer-btn"}
+		<Button variant="ers" size="lg" 
+			className={props.className + " nextButton footer-btn"}
 			disabled={props.disabled} onClick={props.onClick}>
 			{!props.loading ? props.text
 				:

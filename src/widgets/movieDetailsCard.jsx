@@ -26,7 +26,11 @@ export const MovieDetailsCard = (props) => {
 	const parsePersonString = (castString) => {
 		const personArray = castString.split("|");
 		const person = personArray.map((person, index) => {
-			return <span style={{marginLeft: "0.5em"}} key={index}>- {person}</span>
+			return (
+				<span style={{ marginLeft: "0.5em" }} key={index}>
+					- {person}
+				</span>
+			);
 		});
 		return person;
 	}
@@ -34,7 +38,9 @@ export const MovieDetailsCard = (props) => {
 
 	return (
 		<>
-			<Modal show={show} onHide={handleClose} dialogClassName="modal-80w" style={{ zIndex: "2050" }}>
+			{/* TODO - refactor inline style to css */}
+			<Modal show={show} onHide={handleClose}
+				dialogClassName="modal-80w" style={{ zIndex: "2050" }}>
 				<Modal.Header className="movieDetailsModalHeader" closeButton>
 					<Modal.Title>{htmlparser(movieItem.title)}</Modal.Title>
 
@@ -43,7 +49,10 @@ export const MovieDetailsCard = (props) => {
 					<Row>
 						<Col>
 							<div className="movie-preview-card-image">
-								<Image src={movieItem.poster} alt={"Poster of the movie " + movieItem.title}
+								{ /* TODO - refactor inline style to css */}
+								<Image src={movieItem.poster}
+									alt={"Poster of the movie "
+										+ movieItem.title}
 									variant="left"
 									className="d-flex mx-auto d-block img-thumbnail"
 									style={{
@@ -54,8 +63,11 @@ export const MovieDetailsCard = (props) => {
 						</Col>
 						<Col>
 							<Row>
-								<h5 style={{ textAlign: "left" }}>{movieItem.title} ({movieItem.year})</h5>
+								<h5 style={{ textAlign: "left" }}>
+									{movieItem.title} ({movieItem.year})
+								</h5>
 							</Row>
+							{/* TODO - refactor inline style to css */}
 							<Row style={{ height: "270px", overflowY: "scroll" }}>
 								<p style={{ textAlign: "left" }}>
 									{movieItem.description}
@@ -64,18 +76,26 @@ export const MovieDetailsCard = (props) => {
 						</Col>
 					</Row>
 					<hr />
+					{/* TODO - refactor inline style to css */}
 					<Row style={{ height: "216px", overflowY: "scroll", marginTop: "18px" }}>
 						<p>
-							{movieItem.director && <span><strong>Director:</strong> {parsePersonString(movieItem.director)}</span>}
+							{movieItem.director &&
+								<span><strong>Director:</strong>
+									{parsePersonString(movieItem.director)}
+								</span>}
 						</p>
 						<p>
-							{movieItem.cast && <span><strong>Cast:</strong> {parsePersonString(movieItem.cast)}</span>}
+							{movieItem.cast &&
+								<span><strong>Cast:</strong>
+									{parsePersonString(movieItem.cast)}
+								</span>}
 						</p>
 					</Row>
 				</Modal.Body>
 				<Modal.Footer className="movieDetailsModalHeader">
 					{props.cancelCallback &&
-						<Button variant="ersCancel" onClick={() => props.cancelCallback()}>
+						<Button variant="ersCancel"
+							onClick={() => props.cancelCallback()}>
 							Close
 						</Button>
 					}

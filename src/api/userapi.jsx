@@ -11,7 +11,7 @@ const requestBodyMeta = (userdata, pageid) => {
 export function createUser(userType: string, studyId: int) {
 	return post('user/consent/', {
 		study_id: studyId,
-		user_type: 'ersStudy'
+		user_type: 'rssaStudy'
 	}, { study_id: studyId })
 }
 
