@@ -14,6 +14,15 @@ import { BouncingLoader } from '../../widgets/loaders/recLoader';
 import NextButton from '../../widgets/nextButton';
 import './recsystemPage.css';
 
+
+const RSSA_CONDITIONS = {
+	1: "we think are controversial to your preference.",
+	2: "we think you will hate.",
+	3: "we think you will be the first to try.",
+	4: "we have no idea about."
+}
+
+
 export default function RssaMain() {
 	const userdata = useLocation().state.user;
 	const stepid = useLocation().state.studyStep;
@@ -195,22 +204,14 @@ export default function RssaMain() {
 						onChange={(evt) => setRssaCondition(evt.target.value)}
 						value={rssaCondition}>
 						<option value="-1">Please choose an option</option>
-						<option value="1">we think are controversial.</option>
-						<option value="2">we think you will hate.</option>
-						<option value="3">
-							we think you will be the first to try.
-						</option>
-						<option value="4">we have no idea about.</option>
+						{Object.keys(RSSA_CONDITIONS).map((key) =>
+							<option key={key} value={key}>{RSSA_CONDITIONS[key]}</option>
+						)}
 					</Form.Select>
 				</Form.Group>
 			</Row>
 			<Row style={{ position: "relative" }}>
-				{
-					recLoading || conLoading ?
-						<BouncingLoader
-							text="Loading..." />
-						: null
-				}
+				{recLoading || conLoading ? <BouncingLoader text="Loading..." /> : null}
 				<Col className="viewport" xs={{ span: 5 }}>
 					<MovieGrid ratingCallback={rateMoviesHandler}
 						userid={userdata.id} movies={movies}
@@ -218,9 +219,9 @@ export default function RssaMain() {
 						itemsPerPage={itemsPerPage}
 						dataCallback={fetchMovies} />
 				</Col>
-				<Col style={{ display: "flex", position: "relative" }} >
+				<Col style={{ display: "flex", position: "relative", marginRight: "-18px" }} >
 					<Col className="sidePanel">
-						<h5>Movies you think we will like</h5>
+						<h5>Movies we think you will like</h5>
 						<VerticalMovieRibbon
 							customKey="topN_recommendations"
 							ratingCallback={rateMoviesHandler}
@@ -231,7 +232,7 @@ export default function RssaMain() {
 							infoButton={true} />
 					</Col>
 					<Col className="sidePanel">
-						<h5>These are movies that </h5>
+						<h5>These are the movies <span>{RSSA_CONDITIONS[rssaCondition]}</span></h5>
 						<VerticalMovieRibbon
 							customKey="condition_recommendations"
 							ratingCallback={rateMoviesHandler}

@@ -38,7 +38,6 @@ export const HorizontalMovieRibbon = (props) => {
 				ribbonScroller.current.scrollLeft = ribbonScroller.current.scrollWidth;
 			}
 			setEnableLeftScroll(ribbonScroller.current.scrollLeft > 0);
-			console.log("MovieRibbon OffsetWidth: ", ribbonScroller.current.offsetWidth, " ScrollWidth: ", ribbonScroller.current.scrollWidth, " ScrollLeft: ", ribbonScroller.current.scrollLeft)
 			setEnableRightScroll(ribbonScroller.current.offsetWidth < ribbonScroller.current.scrollWidth);
 		}
 	}, [movies, autoScroll]);
@@ -111,9 +110,7 @@ const ScrollRightButton = (props) => {
 	return (
 		<div className={"ribbonScrollButton rightArrow " + (props.disabled ? "disabled" : "")}
 			onClick={props.disabled ? () => { } : props.onClick}>
-			<p>
-				&gt;
-			</p>
+			<p>&gt;</p>
 		</div>
 	)
 }
@@ -141,14 +138,7 @@ export const VerticalMovieRibbon = (props) => {
 	useEffect(() => { setLoading(props.loading) }, [props.loading]);
 
 	return (
-		// <div style={{ position: "relative" }}>
 		<div>
-			{/* {
-				(loading) &&
-				<BouncingLoader key={props.customKey}
-					text="Loading..." />
-			} */}
-			{/* <div style={{ display: "inline-flex" }}> */}
 			<div>
 				<div className="movieRibbonV recRibbon">
 					{movies.length > 0 && movies.map((movie) =>
