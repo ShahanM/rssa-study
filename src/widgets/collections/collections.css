@@ -34,6 +34,17 @@
 		border-radius: 0.5em;
 	}
 
+	.gallery-grid-container {
+		display: grid;
+		grid-template-columns: auto auto auto auto auto auto auto auto;
+		grid-template-rows: auto auto auto auto;
+		justify-items: stretch;
+		overflow-x: hidden;
+		grid-column-gap: 0.25em;
+		grid-row-gap: 0.25em;
+		border-radius: 0.5em;
+	}
+
 	.grid-item {
 		position: relative;
 		background-size: contain;
@@ -70,6 +81,17 @@
 	.grid-container {
 		display: grid;
 		grid-template-columns: auto auto auto auto;
+		grid-template-rows: auto auto auto auto;
+		justify-items: stretch;
+		overflow-x: hidden;
+		grid-column-gap: 0.5em;
+		grid-row-gap: 0.25em;
+		border-radius: 0.5em;
+	}
+
+	.gallery-grid-container {
+		display: grid;
+		grid-template-columns: auto auto auto auto auto;
 		grid-template-rows: auto auto auto auto;
 		justify-items: stretch;
 		overflow-x: hidden;
@@ -308,4 +330,33 @@
 
 .slideToggle.showfbbreak {
 	height: 280px;
+}
+
+.rankHolder {
+	width: -moz-fit-content;
+	width: fit-content;
+	margin: 1.6em auto 0 auto;
+}
+
+.rankHolder span {
+	font-family: "Calibri", Georgia, Serif, serif;
+	font-size: 1.6em;
+	text-align: center;
+	/* padding-top: 17px; */
+}
+
+.rankHolder span:nth-child(2) {
+	color: #357df2;
+	font-weight: bold;
+	padding-left: 5px;
+	padding-right: 5px;
+
+}
+
+.rankHolder span:last-child {
+	font-family: "Calibri", Georgia, Serif, serif;
+	font-size: 1.6em;
+	text-align: center;
+
+	color: #62656b;
 }

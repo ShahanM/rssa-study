@@ -40,3 +40,23 @@ export function sendLog(userdata, stepid, pageid: int, timespent: int,
 			return log;
 		})
 }
+
+export function updateRating(userdata, studyStep, pagelevel, ratings) {
+	const data = {
+		...requestBodyMeta(userdata, studyStep.id),
+		page_level: pagelevel,
+		ratings: ratings
+	}
+	const url = 'user/' + userdata.id + '/itemrating/';
+	return put(url, data, userdata);
+}
+
+export function updateSeen(userdata, studyStep, pagelevel, items) {
+	const data = {
+		...requestBodyMeta(userdata, studyStep.id),
+		page_level: pagelevel,
+		items: items
+	}
+	const url = 'user/' + userdata.id + '/seenitems/';
+	return put(url, data, userdata);
+}

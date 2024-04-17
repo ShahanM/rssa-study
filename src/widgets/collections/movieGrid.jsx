@@ -10,6 +10,7 @@ import MovieGridItem from './movieGridItem';
 export default function MovieGrid(props) {
 	const [currentPage, setCurrentPage] = useState(1);
 	const [movies, setMovies] = useState(props.movies);
+	const [gridType, setGridType] = useState(props.gridType || "gallery");
 	useEffect(() => { setMovies(props.movies) }, [props.movies]);
 
 	const renderPrev = () => {
@@ -22,7 +23,7 @@ export default function MovieGrid(props) {
 	}
 
 	const renderNext = () => {
-		if (currentPage % 2 === 0) {
+		if (currentPage * props.itemsPerPage < props.movies.length) {
 			props.dataCallback();
 		}
 		if (props.pagingCallback) {
@@ -36,7 +37,7 @@ export default function MovieGrid(props) {
 			<Row>
 				<Col>
 					{(currentPage * props.itemsPerPage <= movies.length) ?
-						<div className="grid-container">
+						<div className={gridType === "gallery" ? "gallery-grid-container" : "grid-container"}>
 							{movies.slice((currentPage - 1) * props.itemsPerPage,
 								currentPage * props.itemsPerPage).map(currentMovie => (
 									<MovieGridItem key={"TN_" + currentMovie.id} movieItem={currentMovie}
