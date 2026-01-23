@@ -34,7 +34,7 @@ export default function MovieGrid(props) {
 	return (
 		<Container className="gallery">
 			<Row>
-				<Col md={12}>
+				<Col>
 					{(currentPage * props.itemsPerPage <= movies.length) ?
 						<div className="grid-container">
 							{movies.slice((currentPage - 1) * props.itemsPerPage,
@@ -43,23 +43,26 @@ export default function MovieGrid(props) {
 										handleRating={props.ratingCallback} />
 								))}
 						</div>
-						: <div style={{ minWidth: "585px", minHeight: "656px" }}>
+						: <div className="galleryLoader">
 							<Spinner animation="border" role="status" style={{ margin: "18% 50%", width: "54px", height: "54px" }} />
 						</div>
 					}
 				</Col>
 			</Row>
 			<Row>
-				<Col md={3}>
+				<Col>
 					<div className="btnDiv">
-						<Button id="gallery-left-btn" disabled={currentPage === 1} variant="primary" onClick={renderPrev}>
+						<Button id="gallery-left-btn" disabled={currentPage === 1}
+							variant="ers" onClick={renderPrev}>
 							&lt;
 						</Button>
 					</div>
 				</Col>
-				<Col md={{ span: 3, offset: 3 }}>
+				<Col>
 					<div className="btnDiv">
-						<Button id="gallery-right-btn" variant="primary" onClick={renderNext}>
+						<Button id="gallery-right-btn"
+							disabled={!(currentPage * props.itemsPerPage <= movies.length)}
+							variant="ers" onClick={renderNext}>
 							&gt;
 						</Button>
 					</div>

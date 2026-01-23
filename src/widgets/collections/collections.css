@@ -1,0 +1,311 @@
+.gallery {
+	width: -moz-fit-content;
+	width: fit-content;
+	max-height: 690px;
+	margin: 0 auto;
+}
+
+@media screen and (min-width: 1400px) {
+	.galleryLoader {
+		width: 90%;
+		height: 100%;
+		min-height: 624px;
+	}
+
+	.gallery .btnDiv {
+		margin-top: 0.75em;
+		padding: 0;
+	}
+
+	.gallery .btnDiv Button {
+		width: 230px;
+		height: 54px;
+		margin: 0;
+	}
+
+	.grid-container {
+		display: grid;
+		grid-template-columns: auto auto auto auto;
+		grid-template-rows: auto auto auto auto;
+		justify-items: stretch;
+		overflow-x: hidden;
+		grid-column-gap: 0.25em;
+		grid-row-gap: 0.25em;
+		border-radius: 0.5em;
+	}
+
+	.grid-item {
+		position: relative;
+		background-size: contain;
+		background-position-x: center;
+		background-position-y: top;
+		background-repeat: no-repeat;
+		background-color: rgba(0, 0, 0, 1.0);
+		width: 117px;
+		text-align: center;
+		height: 153px;
+	}
+
+}
+
+@media screen and (min-width: 1200px) and (max-width: 1399px) {
+
+	.galleryLoader {
+		width: 90%;
+		height: 100%;
+		min-height: 624px;
+	}
+
+	.gallery .btnDiv {
+		margin-top: 0.75em;
+		padding: 0;
+	}
+
+	.gallery .btnDiv Button {
+		width: 198px;
+		height: 54px;
+		margin: 0;
+	}
+
+	.grid-container {
+		display: grid;
+		grid-template-columns: auto auto auto auto;
+		grid-template-rows: auto auto auto auto;
+		justify-items: stretch;
+		overflow-x: hidden;
+		grid-column-gap: 0.5em;
+		grid-row-gap: 0.25em;
+		border-radius: 0.5em;
+	}
+
+	.grid-item {
+		position: relative;
+		background-size: contain;
+		background-position-x: center;
+		background-position-y: top;
+		background-repeat: no-repeat;
+		background-color: rgba(0, 0, 0, 1.0);
+		width: 99px;
+		text-align: center;
+		height: 153px;
+	}
+
+}
+
+.grid-item-label {
+	background-color: black;
+	color: white;
+	opacity: 0.8;
+	font-size: 13px;
+	bottom: 0;
+	text-align: center;
+	vertical-align: middle;
+	width: 100%;
+	min-height: 50px;
+	display: flex;
+	z-index: 10;
+	justify-content: center;
+	align-content: center;
+	align-items: center;
+}
+
+.grid-item:hover .overlay {
+	width: 100%;
+	height: 100%;
+	background-color: black;
+	opacity: 0.8;
+}
+
+.grid-item .rated.overlay {
+	width: 100%;
+	height: 100%;
+	background-color: black;
+	opacity: 0.8;
+}
+
+.grid-item:hover .star-div {
+	z-index: 9;
+	display: flex;
+}
+
+.ribbonItem-rating {
+	display: grid;
+	margin: 3px 3px 0 0;
+	text-align: left;
+	overflow-x: hidden;
+	width: 100%;
+	background-color: #000000C3;
+	padding: 3px;
+	border-radius: 0 9px 9px 0;
+	/* text-overflow: clip; */
+}
+
+.ribbonItem-rating:hover .star-div {
+	z-index: 2;
+	display: flex;
+}
+
+
+.movieRibbonH {
+	position: relative;
+	width: 100%;
+	height: 180px;
+	border-bottom: #c8bcb4 2px solid;
+	background-color: #e8dcc4;
+	margin: 0.25em auto;
+	text-align: left;
+	overflow-x: scroll;
+	display: flex;
+	scroll-behavior: smooth;
+}
+
+.movieRibbonV {
+	/* position: relative; */
+	/* width: 288px; */
+	min-height: 640px;
+	/* height: fit-content; */
+	border-right: #c8bcb4 2px solid;
+	background-color: #e8dcc4;
+	border-radius: 0.5em;
+	/* margin: 0.25em auto; */
+	/* text-align: left; */
+	overflow-y: scroll;
+	/* display: flex; */
+	/* flex-direction: column; */
+	/* scroll-behavior: smooth; */
+}
+
+.ribbonButtonDiv {
+	margin: auto;
+}
+
+.ribbonItemFooter {
+	margin: auto;
+}
+
+.verticalMovieRibbonItem {
+	/* position: relative; */
+	background-size: contain;
+	background-position-x: center;
+	background-position-y: top;
+	background-repeat: no-repeat;
+	background-color: rgba(0, 0, 0, 1.0);
+	width: 54px;
+	text-align: center;
+	height: 99px;
+	margin: 3px 3px;
+}
+
+.movieRibbonItem {
+	position: relative;
+	background-size: contain;
+	background-position-x: center;
+	background-position-y: top;
+	background-repeat: no-repeat;
+	background-color: rgba(0, 0, 0, 1.0);
+	width: 117px;
+	text-align: center;
+	height: 153px;
+	margin: 0 1px;
+}
+
+.ribbonScrollButton {
+	width: 36px;
+	height: 180px;
+	margin-top: 4px;
+	border-bottom: #c8bcb4 solid 2px;
+	background-color: rgb(45, 45, 45, 0.9);
+	cursor: pointer;
+}
+
+.ribbonScrollButton p {
+	margin-top: 63px;
+	color: white;
+	font-weight: 800;
+}
+
+.ribbonScrollButton.leftArrow {
+	border-radius: 0.5em 0 0 0.5em;
+}
+
+.ribbonScrollButton.rightArrow {
+	border-radius: 0 0.5em 0.5em 0;
+}
+
+.ribbonScrollButton:hover {
+	background-color: rgb(0, 0, 0, 0.9);
+}
+
+.ribbonScrollButton.disabled {
+	background-color: rgb(45, 45, 45, 0.5);
+	cursor: inherit;
+}
+
+.ribbonScrollButton.disabled p {
+	margin-top: 63px;
+	color: rgb(255, 255, 255, 0.5);
+	font-weight: 800;
+}
+
+.movieRibbonItem.recItem {
+	width: 117px;
+	height: 153px;
+}
+
+.movieRibbon.recRibbon {
+	padding-left: 0;
+	padding-right: 0;
+}
+
+.movieRibbonItem:first-child {
+	margin-left: 0;
+}
+
+.movieRibbonItemLabel {
+	background-color: black;
+	color: white;
+	opacity: 0.8;
+	font-size: 11px;
+	bottom: 0;
+	text-align: center;
+	vertical-align: middle;
+	width: 100%;
+	min-height: 27px;
+	display: flex;
+	z-index: 10;
+	justify-content: center;
+	align-content: center;
+	align-items: center;
+}
+
+.movieRibbonStars {
+	width: 117px;
+	background-color: #282c34;
+	justify-content: center;
+	align-content: center;
+	align-items: center;
+	padding-left: 9px;
+	margin-top: 0px;
+}
+
+.slideToggle {
+	margin: 9px 0;
+	overflow: hidden;
+	transition-property: height;
+	transition-duration: 0.5s;
+	transition-timing-function: linear;
+	/* transition: all 8s ease-in-out; */
+	height: 0;
+}
+
+.slideToggle.showfbdef {
+	height: 180px;
+}
+
+.slideToggle.showfbhow {
+	height: 320px;
+}
+
+.slideToggle.showfbbreak {
+	height: 280px;
+}

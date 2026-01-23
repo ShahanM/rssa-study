@@ -1,3 +1,4 @@
+import './loaders.css';
 import React from "react";
 
 export function BouncingLoader(props) {

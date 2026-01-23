@@ -1,0 +1,37 @@
+.sidePanel {
+	overflow-y: scroll;
+	overflow-x: scroll;
+	padding: 0.5em 0.5em;
+	margin: 0.75em 0.25em;
+	/* height: fit-content; */
+	border: 1px solid #c8bcb4;
+	background-color: #d8ccc4;
+	border-radius: 0.5em;
+}
+
+.sidePanel h5 {
+	text-align: left;
+	margin: 0;
+}
+
+.bottomPanel {
+	overflow-y: scroll;
+	overflow-x: scroll;
+	padding: 0.5em 0.5em;
+	margin: 0.75em 0.25em;
+	/* height: fit-content; */
+	border: 1px solid #c8bcb4;
+	background-color: #d8ccc4;
+	border-radius: 0.5em;
+}
+
+.viewport {
+	margin: 0.75em 0;
+	padding: 0.75em 0.25em;
+	min-height: 600px;
+	border: 1px solid #c8bcb4;
+	background-color: #d8ccc4;
+	border-radius: 0.5em;
+	overflow-y: scroll;
+	overflow-x: scroll;
+}
