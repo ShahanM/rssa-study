@@ -1,122 +1,32 @@
-import { useEffect, useState } from 'react';
-import Card from 'react-bootstrap/Card';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import { useLocation, useNavigate } from 'react-router-dom';
-import {
-	CurrentStep, isEmptyStep, NewParticipant, Participant, StudyStep,
-	useStudy
-} from 'rssa-api';
-import InformedConsentModal from '../components/dialogs/InformedConsent';
-import Footer from '../components/Footer';
-import Header from '../components/Header';
-import { InitStudyPageProps } from './StudyPage.types';
+import React from 'react';
+import { WelcomePage as GenericWelcomePage } from 'rssa-study-template';
 
+const WelcomeContent: React.FC = () => {
+    return (
+        <div className="m-3 p-5 text-left rounded-3">
+            <h3 className="mb-3 text-2xl font-bold">What can you expect?</h3>
+            <p className="mb-2">In this study you will test a new recommender system for movies.</p>
+            <p className="mb-2">There are four steps to the study:</p>
+            <ol className="list-decimal pl-5 mb-4 space-y-1">
+                <li className="p-1">Complete a pre-survey.</li>
+                <li className="p-1">
+                    Rate a few movies you are familiar with to let the recommender system know about your movie preferences.
+                </li>
+                <li className="p-1">Interact with the movie recommender system.</li>
+                <li className="p-1">Complete a post-survey.</li>
+            </ol>
+            <p>
+                Thanks,
+                <br />
+                Research Team
+            </p>
+        </div>
+    );
+};
 
-const Welcome: React.FC<InitStudyPageProps> = ({
-	next,
-	checkpointUrl,
-	studyStep,
-	setNewParticipant,
-	updateCallback }) => {
+// Check props for GenericWelcomePage in library to ensure compatibility
+const WelcomePage: React.FC<any> = (props) => {
+    return <GenericWelcomePage {...props} ContentComponent={WelcomeContent} />;
+};
 
-	const [isUpdated, setIsUpdated] = useState<boolean>(false);
-	const [participant, setParticipant] = useState<Participant>();
-	const [show, setShowInformedConsent] = useState<boolean>(false);
-
-	const { studyApi } = useStudy();
-	const navigate = useNavigate();
-	const location = useLocation();
-
-	const showInformedConsent = () => { setShowInformedConsent(!show); }
-
-	useEffect(() => {
-		if (checkpointUrl !== '/' && checkpointUrl !== location.pathname) {
-			navigate(checkpointUrl);
-		}
-	}, [checkpointUrl, location.pathname, navigate]);
-
-	const consentCallbackHandler = (consent: boolean) => {
-		if (consent) {
-			if (!isEmptyStep(studyStep))
-				studyApi.post<NewParticipant, Participant>('participant/', {
-					study_id: studyStep.study_id,
-					external_id: 'test_user', // FIXME: change to actual platform id
-					participant_type: '149078d0-cece-4b2c-81cd-a7df4f76d15a', // FIXME: use this as part of the environment variables and apiConfig
-					current_step: studyStep.id,
-					current_page: null
-				}).then((response: Participant) => {
-					setNewParticipant(response);
-					setParticipant(response);
-				});
-		}
-	}
-
-	useEffect(() => {
-		if (participant) {
-			studyApi.post<CurrentStep, StudyStep>('studystep/next', {
-				current_step_id: participant.current_step
-			}).then((nextStep: StudyStep) => {
-				updateCallback(nextStep, next);
-				setIsUpdated(true);
-			});
-		}
-	}, [participant, studyApi, updateCallback, navigate, next]);
-
-	useEffect(() => {
-		if (isUpdated) {
-			navigate(next);
-		}
-	}, [isUpdated, navigate, next]);
-
-	return (
-		<Container>
-			<Row>
-				<Header title="Welcome"
-					content="Welcome to the study on movie recommendation." />
-			</Row>
-
-			<Row>
-				<Card bg="light">
-					<Card.Body className="instructionblurb">
-						<Card.Title>What can you expect?</Card.Title>
-						<p>
-							In this study you will test a new recommender system
-							for movies.
-						</p>
-						<p>
-							There are four steps to the study:
-						</p>
-						<ol>
-							<li>
-								Complete a pre-survey.
-							</li>
-							<li>
-								Rate a few movies you are familiar with to let
-								recommender system know about your movie
-								preferences.
-							</li>
-							<li>
-								Interact with the movie recommender system.
-							</li>
-							<li>Complete a post-survey.</li>
-						</ol>
-						<p>
-							Thanks,<br />
-							Research Team
-						</p>
-					</Card.Body>
-				</Card>
-			</Row>
-
-			<InformedConsentModal show={show}
-				consentCallback={consentCallbackHandler} />
-			<Row>
-				<Footer callback={showInformedConsent} text={"Get Started"}
-					disabled={isEmptyStep(studyStep)} />
-			</Row>
-		</Container>
-	)
-}
-
-export default Welcome;
+export default WelcomePage;
